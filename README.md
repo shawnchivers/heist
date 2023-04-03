@@ -136,3 +136,16 @@ ubound(<array-name>)
 upperbound(<array-name>)
 ```
 
+# Build Grammar
+
+```
+antlr4 -Dlanguage=Python3 heist.g4 -visitor
+```
+
+# Run Heist
+
+```
+python3 ./heist.py <inputfile>
+```
+
+
