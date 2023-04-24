@@ -45,7 +45,7 @@ function
 expr_statement
   : expr
   | statement
-  ; 
+  ;
 
 ifblock
   : (line)+
@@ -62,9 +62,10 @@ expr : const                                   # CONST
   | lexpr=expr mulop rexpr=expr                # MULOP
   | lexpr=expr addop rexpr=expr                # ADDOP
   | '(' midexpr=expr ')'                       # PAREN
-  | lexpr=expr (';' | '&') rexpr=expr          # CONCAT
+  | lexpr=expr (';' | '&' | '|' | '..' ) rexpr=expr          # CONCAT
+  | urelop midexpr=expr                           # URELOP
   | lexpr=expr relop rexpr=expr                # RELOP
-  | BOOLEAN                                    # BOOL  
+  | BOOLEAN                                    # BOOL
   | INT                                        # INT
   | DOUBLE                                     # DOUBLE
   | VAR                                        # VAR
@@ -73,7 +74,7 @@ expr : const                                   # CONST
   | null                                       # NULL
   ;
 
-  
+
 
 null : 'null' | 'nothing' | 'empty' | 'void' | 'nil' ;
 
@@ -100,7 +101,10 @@ relop
   | 'and'
   | 'or'
   | 'xor'
-  | 'not'
+  ;
+
+urelop
+  : 'not'
   ;
 
 arg
