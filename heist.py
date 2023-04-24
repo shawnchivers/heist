@@ -375,6 +375,15 @@ class myHeistVisitor(heistVisitor):
         elif op == "%" or "mod":
             return lhs % rhs
 
+    # Visit a parse tree produced by heistParser#URELOP.
+    def visitURELOP(self, ctx:heistParser.URELOPContext):
+        op = ctx.urelop().getText()
+        
+        midnum = self.visit(ctx.midexpr)
+
+        if op == "not":
+            return not midnum
+
     def visitUOPGRP(self, ctx:heistParser.UOPGRPContext):
         op = ctx.uop().getText()
         num = self.visit(ctx.num)
