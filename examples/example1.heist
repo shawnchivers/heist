@@ -1,0 +1,19 @@
+' Heist Demo: derive a function
+
+'define sine function
+sine = function (x) return sin(x) end function
+
+'produces derivative of function using finite difference
+function derivative(f)
+  return function (x)
+    return (f(x+0.0001)-f(x))/0.0001
+  end function
+end function
+
+'define derivative of sine function
+dsine = derivative(sine)
+
+'print derivative of sine function with theta from 0 to pi by pi/4:
+for theta = 0 to pi step pi/4
+  print theta; tab(1); dsine(theta)
+next
